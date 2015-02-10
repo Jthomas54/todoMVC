@@ -17,7 +17,7 @@
                 new ui.TaskModel('Learn ExpressJs', false),
                 new ui.TaskModel('Make ExpressJs Todo app with knockout', true)
             ]),
-            
+
             this.addTask = function () {
                 if (this.currentTask()) {
                     this.tasks.push(new ui.TaskModel(this.currentTask().trim(), false));
@@ -50,11 +50,11 @@
         _loadTasksFromLocalStorage: function () {
             var localCopy = localStorage.getItem('todo');
 
-            if (localCopy != 'undefined') {
+            if (localCopy) {
                 return ko.mapping.fromJSON(localCopy, ui.TaskModel);
             }
             
-            return null;
+            return;
         }
     };
     
