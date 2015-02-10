@@ -4,19 +4,14 @@
         model: {},
         
         TaskModel: function (name, done) {
-            this.name = name || '';
+            this.name = name || 'WHAT AM I SUPPOSED TO DO!!!!';
             this.done = ko.observable(done);
         },
         
         TodoViewModel: function (tasks) {
             this.currentTask = ko.observable();
 
-            this.tasks = tasks || ko.observableArray([
-                new ui.TaskModel('Get Milk', false),
-                new ui.TaskModel('Pickup kids', true),
-                new ui.TaskModel('Learn ExpressJs', false),
-                new ui.TaskModel('Make ExpressJs Todo app with knockout', true)
-            ]),
+            this.tasks = ko.observableArray(tasks.map(function (d) { return new ui.TaskModel(d.name, d.done); })),
 
             this.addTask = function () {
                 if (this.currentTask()) {
@@ -29,7 +24,7 @@
             this.popTask = function (task) {
                 this.tasks.remove(task);
             }.bind(this),
-            
+
             this._saveChanges = function () {
                 localStorage.setItem('todo', ko.toJSON(this.tasks));
             };
@@ -49,12 +44,12 @@
         
         _loadTasksFromLocalStorage: function () {
             var localCopy = localStorage.getItem('todo');
-
+            
             if (localCopy) {
-                return ko.mapping.fromJSON(localCopy, ui.TaskModel);
+                return ko.utils.parseJson(localCopy);
             }
             
-            return;
+            return [];
         }
     };
     
