@@ -1,0 +1,21 @@
+﻿extends layout
+
+block content
+  h1.title.text-muted= title
+  form.form-inline
+    .form-group
+      .input-group.addTask
+        input(type='text', placeholder='Task to do...', data-bind='textInput: currentTask').form-control
+        span.input-group-btn
+          button(data-bind='click: addTask').btn.btn-primary Add
+
+  div#tasks(data-bind='foreach: tasks')
+    div.task
+      input(type='checkbox', data-bind='checked: done')
+      label(data-bind='text: name')
+      a.delete(href='#', title='Delete', data-bind='click: $root.popTask')
+        span.glyphicon.glyphicon-remove
+
+
+  script(type='text/javascript', src='/scripts/index.js')
+    

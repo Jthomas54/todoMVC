@@ -1,0 +1,13 @@
+﻿doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Erica+One')
+    //For some reason, having the knockout libraries locally causes the *JSON methods to no function correctly, so falling back to cdn's
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js')
+  body
+    #wrapper.container
+        block content
